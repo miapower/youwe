@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+*{
+    font-family: 'Rubik', sans-serif;
+    transition: 1s all;
+}
+div.layoutcontainer{
+    background: url('https://images.pexels.com/photos/950241/pexels-photo-950241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+div.layoutcontainer:hover{
+    border: 15px solid black;
+    padding: 25px;
+}
+
+div.container{
+    max-width: 860px;
+    background-color: lightgray;
+    padding: 15px;
+    
+    }
+
+    div.container:hover{
+        border: 10px solid black;
+        padding: 5px
+    }
+
+div.row{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 15px 0;
+}
+
+div.boxContainer{
+    min-width: 250px;
+    padding: 15px;    
+}
+
+div.boxContainer:hover{
+        border: 5px solid black;
+        padding: 10px;
+}
+

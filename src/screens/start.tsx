@@ -1,31 +1,75 @@
+import './Start.css';
+
+import {useState} from 'react';
+import { KeyValuePair, YouWeBox } from '../types';
+import { Row } from '../components/Row';
+
 export const Start = () => {
+    const initialBoxes : YouWeBox[]= [
+        {header: "Header 1", body: "Body 1"},
+        {header: "Header 2", body: "Body 2"},
+        {header: "Header 3", body: "Body 3"},
+        {header: "Header 4", body: "Body 4"},
+        {header: "Header 5", body: "Body 5"},
+        {header: "Header 6", body: "Body 6"},
+        {header: "Header 7", body: "Body 7"},
+        {header: "Header 8", body: "Body 8"},
+        {header: "Header 9", body: "Body 9"},
+        {header: "Header 1", body: "Body 1"},
+        {header: "Header 2", body: "Body 2"},
+        {header: "Header 3", body: "Body 3"},
+        {header: "Header 4", body: "Body 4"},
+        {header: "Header 5", body: "Body 5"},
+        {header: "Header 6", body: "Body 6"},
+        {header: "Header 7", body: "Body 7"},
+        {header: "Header 8", body: "Body 8"},
+        {header: "Header 9", body: "Body 9"},
+    ];
+    const [boxes, setBoxes] = useState(initialBoxes);
+
+    const colors : KeyValuePair = {1: 'cyan', 2: 'red', 3: 'green', 0: 'blue'};
+
+    function colorPicker(i:number) {
+        return colors[i % 4];
+    }
+
+    for ( let i = 0; i < boxes.length; i++ ) {
+     const color = colorPicker(i);
+        boxes[i].color = color;
+    }
+ 
+    let chunkSize = 3;
+    const chunks = [];
+
+    for (let i = 0; i < boxes.length; i += chunkSize) {
+        chunks.push(boxes.slice(i, i + chunkSize));
+        chunkSize = chunkSize-1;
+        if (chunkSize === 0)
+            chunkSize = 3;
+    }
+
   return (
-    <div>Hello YouWe</div>
-  )
+    <div role="layoutcontainer" className="layoutcontainer">
+        <div role="container" className="container">
+            <h1>Hello YouWe</h1>
+            {
+            chunks.map((chunk:YouWeBox[], i:number) => <Row key={i} showBoxes={chunk} />)
+
 }
+        </div>
+
+    </div>
+  );
+};
 
 
 /*
 # FLUID LAYOUT WITH BOXES
 
-Your task is to build a layout that contains a set of fluid boxes.
-
-Sara, our product owner, has an idea of a new layout that is to be tried
-out. The goal is to make the result look as close as possible to the simple
-sketch below.
-
-If you feel that some information is lacking, or counter-intuitive, please use
-your creative freedom & comment on it. It is important that the result feels
-smooth to use.
-
-Feel free to use https://jsfiddle.net/ to host your test.
-
-
 ## Acceptance criteria:
 
 * Create markup that creates 2 containers
 * Create/generate markup for 1 initial box
-
 
 ### Now for some rules
 

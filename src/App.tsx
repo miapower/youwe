@@ -1,9 +1,9 @@
-import { Start } from './components/screens/start';
+import {Start} from './screens/start';
 
 function App() {
-  return (
-    <Start />
-  );
+	return (
+		<Start />
+	);
 }
 
 export default App;
