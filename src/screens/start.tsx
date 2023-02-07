@@ -15,15 +15,15 @@ export const Start = () => {
         {header: "Header 7", body: "Body 7"},
         {header: "Header 8", body: "Body 8"},
         {header: "Header 9", body: "Body 9"},
-        {header: "Header 1", body: "Body 1"},
-        {header: "Header 2", body: "Body 2"},
-        {header: "Header 3", body: "Body 3"},
-        {header: "Header 4", body: "Body 4"},
-        {header: "Header 5", body: "Body 5"},
-        {header: "Header 6", body: "Body 6"},
-        {header: "Header 7", body: "Body 7"},
-        {header: "Header 8", body: "Body 8"},
-        {header: "Header 9", body: "Body 9"},
+        {header: "Header 10", body: "Body 10"},
+        {header: "Header 11", body: "Body 11"},
+        {header: "Header 12", body: "Body 12"},
+        {header: "Header 13", body: "Body 13"},
+        {header: "Header 14", body: "Body 14"},
+        {header: "Header 15", body: "Body 15"},
+        {header: "Header 16", body: "Body 16"},
+        {header: "Header 17", body: "Body 17"},
+        {header: "Header 18", body: "Body 18"},
     ];
     const [boxes, setBoxes] = useState(initialBoxes);
 
@@ -34,18 +34,19 @@ export const Start = () => {
     }
 
     for ( let i = 0; i < boxes.length; i++ ) {
-     const color = colorPicker(i);
+     const color = colorPicker(i+1);
         boxes[i].color = color;
     }
  
-    let chunkSize = 3;
+    let chunkSize = 4;
     const chunks = [];
 
     for (let i = 0; i < boxes.length; i += chunkSize) {
-        chunks.push(boxes.slice(i, i + chunkSize));
         chunkSize = chunkSize-1;
         if (chunkSize === 0)
             chunkSize = 3;
+        chunks.push(boxes.slice(i, i + chunkSize));
+        
     }
 
   return (
