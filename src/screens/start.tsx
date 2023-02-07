@@ -1,31 +1,47 @@
 import './Start.css';
-
 import {useState} from 'react';
 import { KeyValuePair, YouWeBox } from '../types';
 import { Row } from '../components/Row';
 
 export const Start = () => {
     const initialBoxes : YouWeBox[]= [
-        {header: "Header 1", body: "Body 1"},
-        {header: "Header 2", body: "Body 2"},
-        {header: "Header 3", body: "Body 3"},
-        {header: "Header 4", body: "Body 4"},
-        {header: "Header 5", body: "Body 5"},
-        {header: "Header 6", body: "Body 6"},
-        {header: "Header 7", body: "Body 7"},
-        {header: "Header 8", body: "Body 8"},
-        {header: "Header 9", body: "Body 9"},
-        {header: "Header 10", body: "Body 10"},
-        {header: "Header 11", body: "Body 11"},
-        {header: "Header 12", body: "Body 12"},
-        {header: "Header 13", body: "Body 13"},
-        {header: "Header 14", body: "Body 14"},
-        {header: "Header 15", body: "Body 15"},
-        {header: "Header 16", body: "Body 16"},
-        {header: "Header 17", body: "Body 17"},
-        {header: "Header 18", body: "Body 18"},
+        {id: 1, header: "Header 1", body: "Body 1"},
+        {id: 2, header: "Header 2", body: "Body 2"},
+        {id: 3, header: "Header 3", body: "Body 3"},
+        {id: 4, header: "Header 4", body: "Body 4"},
+        {id: 5, header: "Header 5", body: "Body 5"},
+        {id: 6, header: "Header 6", body: "Body 6"},
+        {id: 7, header: "Header 7", body: "Body 7"},
+        {id: 8, header: "Header 8", body: "Body 8"},
+        {id: 9, header: "Header 9", body: "Body 9"},
+        {id: 10, header: "Header 10", body: "Body 10"},
+        {id: 11, header: "Header 11", body: "Body 11"},
+        {id: 12, header: "Header 12", body: "Body 12"},
+        {id: 13, header: "Header 13", body: "Body 13"},
+        {id: 14, header: "Header 14", body: "Body 14"},
+        {id: 15, header: "Header 15", body: "Body 15"},
+        {id: 16, header: "Header 16", body: "Body 16"},
+        {id: 17, header: "Header 17", body: "Body 17"},
+        {id: 18, header: "Header 18", body: "Body 18"},
     ];
     const [boxes, setBoxes] = useState(initialBoxes);
+
+    const fetchUser = () => {
+          return {header: "Header X", body: "Body X ", id: boxes.length + 1};
+    };
+
+    const handleAddBox = (id: number) => {
+        const box = fetchUser();
+        console.log(box);
+        setBoxes((prevBoxes) => [
+            ...prevBoxes,
+            box,
+        ]);
+    };
+
+    const handleDeleteBox = (id: number) => {
+        setBoxes(boxes.filter(item => item.id !== id));
+    };
 
     const colors : KeyValuePair = {1: 'cyan', 2: 'red', 3: 'green', 0: 'blue'};
 
@@ -50,16 +66,21 @@ export const Start = () => {
     }
 
   return (
-    <div role="layoutcontainer" className="layoutcontainer">
+    <>
+            <div role="layoutcontainer" className="layoutcontainer">
         <div role="container" className="container">
             <h1>Hello YouWe</h1>
             {
-            chunks.map((chunk:YouWeBox[], i:number) => <Row key={i} showBoxes={chunk} />)
-
-}
+            chunks.map(
+                (chunk:YouWeBox[], i:number) => 
+                <Row key={i} showBoxes={chunk} handleAddBox={handleAddBox} handleDeleteBox={handleDeleteBox}/>
+                )
+            }
         </div>
 
     </div>
+    </>
+    
   );
 };
 

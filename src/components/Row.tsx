@@ -1,12 +1,20 @@
-import { RowProps } from '../types';
+import { RowProps, YouWeBox } from '../types';
 import {Box} from './Box';
 
-export const Row = (props: RowProps) => {
-	const numberOfBoxes = props.showBoxes.length;
-	console.log(props.showBoxes);
+export const Row = ({handleAddBox, handleDeleteBox, showBoxes}: RowProps) => {	
 	return (
 		<div className='row'>
-			{props.showBoxes.map((box: any, i: number) => <Box key={i} color={box.color} headerText={box.header} bodyContent={box.body}/>)}
+			{showBoxes.map((box: YouWeBox) =>
+			<>
+			<Box 
+				key={box.key ? box.key : box.id}
+				id={box.id} 
+				color={box.color} 
+				headerText={box.header} 
+				bodyContent={box.body} 
+				handleAddBox={handleAddBox} 
+				handleDeleteBox={handleDeleteBox}
+			/></>)}
 		</div>
 	);
 };

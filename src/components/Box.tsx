@@ -1,16 +1,18 @@
-import { BoxProps } from "../types";
+import { BoxProps, YouWeBox } from "../types";
 
+export const Box = ({handleAddBox, handleDeleteBox, headerText, bodyContent, color, id}: BoxProps) => {
+	
+	const handleBoxClick : React.MouseEventHandler<HTMLDivElement | HTMLAnchorElement> = () => {
+		handleAddBox(id);
+	};
 
-export const Box = ({color, headerText, bodyContent}: BoxProps) => {
-	// Console.log(bgColor, headerText, bodyContent);
-
-	const handleBoxClick = () => {
-		alert('box is clicked');
+	const handleBoxRemove = () => {
+		handleDeleteBox(id);
 	};
 
 	return (
 		<div className='boxContainer' onClick={handleBoxClick}>
-			<div className='boxHeader'>{headerText}</div>
+			<div className='boxHeader'>{headerText}<span onClick={handleBoxRemove}>Klicka för att ta bort</span></div>
 			<div className='boxBody'>{bodyContent} {color}</div>
 		</div>
 	);

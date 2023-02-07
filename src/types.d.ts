@@ -4,6 +4,7 @@ export interface KeyValuePair{
 
 export interface YouWeBox {
     key?: string;
+    id?: number;
     header: string;
     body: string;
     color?: string;
@@ -11,10 +12,15 @@ export interface YouWeBox {
 
   export type RowProps = {
 	showBoxes: any;
+    handleAddBox?: any;
+    handleDeleteBox?: any;
 };
 
 export type BoxProps = {
+    id?: number;
 	color?: string;
 	headerText?: string;
 	bodyContent?: string;
+    handleAddBox?: any;
+    handleDeleteBox?: any;
 };
