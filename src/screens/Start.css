@@ -45,6 +45,12 @@ div.row{
     padding: 20px;
 }
 
+@media only screen and (max-width: 600px) {
+    div.row{
+        flex-direction: column;
+    }
+}
+
 div.boxContainer{
     cursor: pointer;
     padding: 10px;
