@@ -7,11 +7,13 @@ export const Row = ({handleAddBox, handleDeleteBox, showBoxes}: RowProps) => {
 			{showBoxes.map((box: YouWeBox) =>
 			<>
 			<Box 
-				key={box.key ? box.key : box.id}
+				key={box.id}
 				id={box.id} 
 				color={box.color} 
 				headerText={box.header} 
-				bodyContent={box.body} 
+				bodyContent={box.body}
+				bodyExtra={box.extra}
+				imgUrl={box.img}  
 				handleAddBox={handleAddBox} 
 				handleDeleteBox={handleDeleteBox}
 			/></>)}

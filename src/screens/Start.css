@@ -5,43 +5,95 @@
 }
 
 div{
-    width: 100%;
     text-align: center;
 }
 div.layoutcontainer{
-    background: url('https://images.pexels.com/photos/950241/pexels-photo-950241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background: url('https://images.pexels.com/photos/3844788/pexels-photo-3844788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
     max-width: 1200px;
     margin: 40px auto;
+    pointer-events: none;
+    display: flex;
     justify-content: center;
+    border: 15px solid transparent;
 }
 
-div.layoutcontainer:hover{
+ div.layoutcontainer:hover{
     border: 15px solid black;
-}
+    max-width: 1170px;
+} 
 
 div.container{
     max-width: 860px;
-    background-color: lightgray;
+    background-color: lightgrey;
     padding: 40px 0;
-    margin: 0 auto;
+    margin: 40px auto;
+    pointer-events: none;
+    border: 10px solid transparent;
     }
 
 div.container:hover{
         border: 10px solid black;
+        max-width: 840px;
     }
 
 div.row{
     display: flex;
     flex-direction: row;
     gap: 30px;
-    margin: 10px auto;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    padding: 20px;
 }
 
 div.boxContainer{
-    padding: 10px;  
+    cursor: pointer;
+    padding: 10px;
+    pointer-events: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 5px solid rgba(0,0,0,0.2);
+    border-radius: 7px;
+    flex: 100%;
+}
+
+div.boxContainer.red{
+    background-color:rgb(217, 85, 85);
+}
+
+div.boxContainer.blue{
+    background-color:rgb(112, 148, 233);
+}
+
+div.boxContainer.green{
+    background-color:rgb(166, 244, 135);
 }
 
 div.boxContainer:hover{
         border: 5px solid black;
 }
 
+div.boxContainer img {
+    border-radius: 50%;
+    margin: 10px 0;
+    height: 128px;
+    width: 128px;
+  }
+
+div.boxContainer .boxHeader{
+font-weight: 700;
+font-size: 1.4em;
+margin-bottom: 10px;
+}
+
+div.boxContainer button{
+    background: rgba(0,0,0,0.1);
+    border: 0;
+    padding: 8px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+div.boxContainer button:hover{
+    background: rgba(0,0,0,0.2);
+}

@@ -7,6 +7,8 @@ export interface YouWeBox {
     id?: number;
     header: string;
     body: string;
+    img?: string;
+    extra?:string;
     color?: string;
   }
 
@@ -17,10 +19,13 @@ export interface YouWeBox {
 };
 
 export type BoxProps = {
+    key?: string | number;
     id?: number;
 	color?: string;
 	headerText?: string;
 	bodyContent?: string;
+    bodyExtra?: string;
+    imgUrl?: string;
     handleAddBox?: any;
     handleDeleteBox?: any;
 };

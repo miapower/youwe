@@ -1,42 +1,62 @@
 import './Start.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { KeyValuePair, YouWeBox } from '../types';
 import { Row } from '../components/Row';
 
 export const Start = () => {
     const initialBoxes : YouWeBox[]= [
-        {id: 1, header: "Header 1", body: "Body 1"},
-        {id: 2, header: "Header 2", body: "Body 2"},
-        {id: 3, header: "Header 3", body: "Body 3"},
-        {id: 4, header: "Header 4", body: "Body 4"},
-        {id: 5, header: "Header 5", body: "Body 5"},
-        {id: 6, header: "Header 6", body: "Body 6"},
-        {id: 7, header: "Header 7", body: "Body 7"},
-        {id: 8, header: "Header 8", body: "Body 8"},
-        {id: 9, header: "Header 9", body: "Body 9"},
-        {id: 10, header: "Header 10", body: "Body 10"},
-        {id: 11, header: "Header 11", body: "Body 11"},
-        {id: 12, header: "Header 12", body: "Body 12"},
-        {id: 13, header: "Header 13", body: "Body 13"},
-        {id: 14, header: "Header 14", body: "Body 14"},
-        {id: 15, header: "Header 15", body: "Body 15"},
-        {id: 16, header: "Header 16", body: "Body 16"},
-        {id: 17, header: "Header 17", body: "Body 17"},
-        {id: 18, header: "Header 18", body: "Body 18"},
+        {id: 1, header: "Elvis Presley", body: "example@example.com"},
+        {id: 2, header: "Lady Gaga", body: "example@example.com"},
+        {id: 3, header: "David Gahan", body: "example@example.com",},
+        {id: 4, header: "Billie Eilish", body: "example@example.com"},
+        {id: 5, header: "Pink Floyd", body: "example@example.com"},
+        {id: 6, header: "Ghost", body: "example@example.com"},
+        {id: 7, header: "Robyn", body: "example@example.com"},
+        {id: 8, header: "Anna Ternheim", body: "example@example.com"},
+        {id: 9, header: "Johnny Cash", body: "example@example.com"},
+        {id: 10, header: "David Bowie", body: "example@example.com"},
+        {id: 11, header: "Hello Saferide", body: "example@example.com"},
+        {id: 12, header: "First Aid Kit", body: "example@example.com"},
+        {id: 13, header: "Simone de Bevoir", body: "example@example.com"},
+        {id: 14, header: "Albin Lee Meldau", body: "example@example.com"},
+        {id: 15, header: "Kleerup", body: "example@example.com"},
+        {id: 16, header: "Röyksopp", body: "example@example.com"},
+        {id: 17, header: "Frankie Goes to Hollywood", body: "example@example.com"},
+        {id: 18, header: "Roxy Music", body: "example@example.com"},
     ];
-    const [boxes, setBoxes] = useState(initialBoxes);
+    const [boxes, setBoxes] = useState<any[]>(initialBoxes);
+    const [users, setUsers] = useState<any[]>([]);
+    const [counter, setCounter] = useState(1);
+    
+    const fetchUsers = async () => {
+        //Fetch a large number and pick from them until no more 
+        const res = await fetch("https://reqres.in/api/users/?per_page=100");
+        const json = await res.json();
+        setUsers(json.data);
+    };
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
     const fetchUser = () => {
-          return {header: "Header X", body: "Body X ", id: boxes.length + 1};
+        const user = users[Math.floor(Math.random()*users.length)];
+        setUsers(users.filter(usr => usr.email !== user.email));
+        if (users.length > 0){
+            setCounter(counter+1);
+            return {id: Math.max(...boxes.map(o => o.id)) + 1, body: user?.email, header: `${user.first_name} ${user.last_name}`, extra: `Added as #${counter}`, img: user.avatar};
+        }
+        else
+            return false;
     };
 
     const handleAddBox = (id: number) => {
         const box = fetchUser();
-        console.log(box);
-        setBoxes((prevBoxes) => [
-            ...prevBoxes,
-            box,
-        ]);
+    
+        if (box){
+            setBoxes(boxes.reduce((list,obj)=>Object.values(obj)[0]===id ? [...list,obj,box] : [...list,obj], []));
+        }
+        else
+            alert('No more users to fetch');
     };
 
     const handleDeleteBox = (id: number) => {
@@ -53,7 +73,7 @@ export const Start = () => {
      const color = colorPicker(i+1);
         boxes[i].color = color;
     }
- 
+
     let chunkSize = 4;
     const chunks = [];
 
@@ -66,9 +86,8 @@ export const Start = () => {
     }
 
   return (
-    <>
-            <div role="layoutcontainer" className="layoutcontainer">
-        <div role="container" className="container">
+    <div role="layoutcontainer" className="layoutcontainer" id="layoutContainer">
+        <div role="container" className="container" id="innerContainer">
             <h1>Hello YouWe</h1>
             {
             chunks.map(
@@ -77,10 +96,7 @@ export const Start = () => {
                 )
             }
         </div>
-
     </div>
-    </>
-    
   );
 };
 
