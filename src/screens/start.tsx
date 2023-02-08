@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import './Start.css';
 import {useEffect, useState} from 'react';
 import { KeyValuePair, YouWeBox } from '../types';
@@ -24,6 +25,7 @@ export const Start = () => {
         {id: 17, header: "Frankie Goes to Hollywood", body: "example@example.com"},
         {id: 18, header: "Roxy Music", body: "example@example.com"},
     ];
+    
     const [boxes, setBoxes] = useState<any[]>(initialBoxes);
     const [users, setUsers] = useState<any[]>([]);
     const [counter, setCounter] = useState(1);
